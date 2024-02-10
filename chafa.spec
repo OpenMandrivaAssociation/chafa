@@ -1,16 +1,16 @@
 %define major		0
-%define libname		%mklibname %{name} %{major}
+%define libname		%mklibname %{name}
 %define develname	%mklibname %{name} -d
 
 Name:		chafa
 Version:	1.14.0
-Release:	%mkrel 1
+Release:	1
 Summary:	Image-to-text converter for terminal
 License:	LGPLv3+
 Group:		System/Libraries
 URL:		https://hpjansson.org/chafa/
-Source0:	https://github.com/hpjansson/%{name}/releases/download/%{version}/%{name}-%{version}.tar.xz
-BuildRequires:	gcc
+Source0:	https://github.com/hpjansson/chafa/releases/download/%{version}/%{name}-%{version}.tar.xz
+
 BuildRequires:	gtk-doc
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(freetype2)
@@ -37,8 +37,8 @@ animated image formats like GIFs, into ANSI/Unicode characters.
 %package -n	%{develname}
 Summary:	Development package for %{name}
 Group:		Development/C++
-Requires:	%{libname} = %{version}-%{release}
-Provides:	%{name}-devel = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
+Provides:	%{name}-devel = %{EVRD}
 
 %description -n	%{develname}
 Header files for development with %{name}.
@@ -57,14 +57,7 @@ Documentation for %{name}.
 #------------------------------------------------
 
 %prep
-%setup -q
-
-%ifarch %ix86
-sed -i \
-  -e 's/\s\+-msse4.1//g' \
-  -e 's/\s\+-mavx2//g' \
-  configure.ac
-%endif
+%autosetup -p1
 
 %build
 autoreconf -fi
