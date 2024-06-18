@@ -3,7 +3,7 @@
 %define develname	%mklibname %{name} -d
 
 Name:		chafa
-Version:	1.14.0
+Version:	1.14.1
 Release:	1
 Summary:	Image-to-text converter for terminal
 License:	LGPLv3+
@@ -16,6 +16,7 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(ImageMagick)
+BuildRequires:  pkgconfig(libjxl)
 
 %description
 Chafa is a command-line utility that converts all kinds of images, including
