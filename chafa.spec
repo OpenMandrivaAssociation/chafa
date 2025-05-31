@@ -3,8 +3,8 @@
 %define develname	%mklibname %{name} -d
 
 Name:		chafa
-Version:	1.14.5
-Release:	2
+Version:	1.16.1
+Release:	1
 Summary:	Image-to-text converter for terminal
 License:	LGPLv3+
 Group:		System/Libraries
