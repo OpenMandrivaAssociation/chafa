@@ -61,8 +61,11 @@ Recommends:	%{name}-devel
 %description	doc
 Documentation for %{name}.
 
-# Pregenerated gtk-doc HTML lives in the tarball; VPATH install skips it.
+# Pregenerated man page and gtk-doc HTML live in the tarball; VPATH
+# install skips both when xsltproc/gtk-doc rebuild is disabled.
 %install -a
+install -dm755 %{buildroot}%{_mandir}/man1
+install -pm644 docs/chafa.1 %{buildroot}%{_mandir}/man1/
 install -dm755 %{buildroot}%{_datadir}/gtk-doc/html/%{name}
 cp -a docs/html/* %{buildroot}%{_datadir}/gtk-doc/html/%{name}/
 
