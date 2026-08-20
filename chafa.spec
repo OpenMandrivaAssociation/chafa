@@ -11,12 +11,18 @@ Group:		System/Libraries
 URL:		https://hpjansson.org/chafa/
 Source0:	https://github.com/hpjansson/chafa/releases/download/%{version}/%{name}-%{version}.tar.xz
 
-BuildRequires:	gtk-doc
-BuildRequires:	libtool
+BuildSystem:	autotools
+
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(glib-2.0)
-BuildRequires:	pkgconfig(ImageMagick)
-BuildRequires:  pkgconfig(libjxl)
+BuildRequires:	pkgconfig(libavif)
+BuildRequires:	pkgconfig(libheif)
+BuildRequires:	pkgconfig(libjpeg)
+BuildRequires:	pkgconfig(libjxl)
+BuildRequires:	pkgconfig(librsvg-2.0)
+BuildRequires:	pkgconfig(libtiff-4)
+BuildRequires:	pkgconfig(libwebp)
+BuildRequires:	pkgconfig(libwebpdemux)
 
 %description
 Chafa is a command-line utility that converts all kinds of images, including
@@ -55,18 +61,10 @@ Recommends:	%{name}-devel
 %description	doc
 Documentation for %{name}.
 
-#------------------------------------------------
-
-%prep
-%autosetup -p1
-
-%build
-autoreconf -fi
-%configure --disable-static --disable-rpath
-%make_build
-
-%install
-%make_install
+# Pregenerated gtk-doc HTML lives in the tarball; VPATH install skips it.
+%install -a
+install -dm755 %{buildroot}%{_datadir}/gtk-doc/html/%{name}
+cp -a docs/html/* %{buildroot}%{_datadir}/gtk-doc/html/%{name}/
 
 %files
 %license COPYING.LESSER
