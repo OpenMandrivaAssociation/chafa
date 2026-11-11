@@ -4,7 +4,7 @@
 
 Name:		chafa
 Version:	1.18.2
-Release:	2
+Release:	3
 Summary:	Image-to-text converter for terminal
 License:	LGPLv3+
 Group:		System/Libraries
